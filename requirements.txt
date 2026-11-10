@@ -10,3 +10,4 @@ Pillow==13.0.0
 requests==2.32.5
 cloudinary==1.46.3
 django-cloudinary-storage==0.3.0
+PyJWT>=2.8.0
