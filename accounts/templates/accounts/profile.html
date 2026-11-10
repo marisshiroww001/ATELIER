@@ -1,0 +1,107 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}My Account — ATELIER{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="profile-page">
+
+    <div class="profile-header">
+        <span class="profile-eyebrow">YOUR ATELIER ACCOUNT</span>
+        <h1>My Account</h1>
+        <p>Manage your personal details and account preferences.</p>
+    </div>
+
+    <div class="profile-container">
+
+        <div class="profile-card">
+
+            <div class="profile-avatar">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="8" r="4"></circle>
+                    <path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"></path>
+                </svg>
+            </div>
+
+            <div class="profile-welcome">
+                <span>WELCOME BACK</span>
+                <h2>
+                    {% if user.first_name %}
+                    {{ user.first_name }}
+                    {% else %}
+                    {{ user.email }}
+                    {% endif %}
+                </h2>
+                <p>{{ user.email }}</p>
+            </div>
+
+            <div class="profile-divider"></div>
+
+            <form method="POST" class="profile-edit-form">
+                {% csrf_token %}
+
+                <div class="profile-details">
+
+                    <div class="profile-detail">
+                        <label for="{{ form.first_name.id_for_label }}">FIRST NAME</label>
+                        {{ form.first_name }}
+                        {{ form.first_name.errors }}
+                    </div>
+
+                    <div class="profile-detail">
+                        <label for="{{ form.last_name.id_for_label }}">LAST NAME</label>
+                        {{ form.last_name }}
+                        {{ form.last_name.errors }}
+                    </div>
+
+                    <div class="profile-detail">
+                        <label for="{{ form.email.id_for_label }}">EMAIL ADDRESS</label>
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </div>
+
+                </div>
+
+                {% if form.non_field_errors %}
+                <div class="profile-form-errors">
+                    {{ form.non_field_errors }}
+                </div>
+                {% endif %}
+
+                <div class="profile-edit-actions">
+                    <button type="submit" class="profile-save-button">
+                        Save Changes
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="profile-divider"></div>
+
+            <div class="profile-actions">
+
+                <a href="{% url 'shop' %}" class="profile-shop-button">
+                    Continue Shopping
+                </a>
+
+                <form method="POST" action="{% url 'accounts:logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="profile-logout-button">
+                        Sign Out
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

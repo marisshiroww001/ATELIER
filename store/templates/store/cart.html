@@ -1,0 +1,170 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}My Shopping Bag | ATELIER{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="cart-page">
+
+    <div class="cart-heading">
+        <span>YOUR SELECTION</span>
+        <h1>Shopping Bag</h1>
+        <p>Review your pieces before proceeding to checkout.</p>
+    </div>
+
+    {% if cart_items %}
+
+    <div class="cart-layout">
+
+        <div class="cart-items">
+
+            {% for item in cart_items %}
+
+            <article class="cart-item">
+
+                <div class="cart-item-image">
+                    {% if item.product.image %}
+                    <img src="{{ item.product.image.url }}"
+                         alt="{{ item.product.name }}">
+                    {% elif item.product.gallery.first %}
+                    <img src="{{ item.product.gallery.first.image.url }}"
+                         alt="{{ item.product.name }}">
+                    {% endif %}
+                </div>
+
+                <div class="cart-item-details">
+
+                    <span class="cart-item-category">
+                        {{ item.product.category.name }}
+                    </span>
+
+                    <h2>{{ item.product.name }}</h2>
+
+                    <p class="cart-item-size">
+                        Size: {{ item.size }}
+                    </p>
+
+                    <form method="POST"
+                          action="{% url 'update_cart_item' item.id %}"
+                          class="cart-quantity-form">
+
+                        {% csrf_token %}
+
+                        <label for="quantity-{{ item.id }}">Quantity</label>
+
+                        <div class="cart-quantity-controls">
+
+                            <input type="number"
+                                   id="quantity-{{ item.id }}"
+                                   name="quantity"
+                                   value="{{ item.quantity }}"
+                                   min="1"
+                                   max="{{ item.product.stock_quantity }}"
+                                   required>
+
+                            <button type="submit">
+                                UPDATE
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                    <p class="cart-item-price">
+                        KSh {{ item.product.price|floatformat:2 }}
+                    </p>
+
+                </div>
+
+                <div class="cart-item-subtotal">
+                    <span>Subtotal</span>
+
+                    <strong>
+                        KSh {{ item.subtotal|floatformat:2 }}
+                    </strong>
+
+                    <form method="POST"
+                          action="{% url 'remove_from_cart' item.id %}"
+                          class="remove-cart-form">
+
+                        {% csrf_token %}
+
+                        <button type="submit" class="remove-cart-button">
+                            REMOVE
+                        </button>
+
+                    </form>
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        <aside class="cart-summary">
+
+            <h2>Order Summary</h2>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>KSh {{ cart_total|floatformat:2 }}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Delivery</span>
+                <span>Calculated at checkout</span>
+            </div>
+
+            <div class="summary-divider"></div>
+
+            <div class="summary-total">
+                <span>Total</span>
+                <strong>KSh {{ cart_total|floatformat:2 }}</strong>
+            </div>
+
+            <a href="{% url 'checkout' %}" class="checkout-button">
+                PROCEED TO CHECKOUT
+            </a>
+
+            <a href="{% url 'shop' %}" class="continue-shopping">
+                Continue Shopping
+            </a>
+
+        </aside>
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-cart">
+
+        <div class="empty-cart-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 8h14l1 13H4L5 8Z"></path>
+                <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+            </svg>
+        </div>
+
+        <h2>Your bag is currently empty.</h2>
+
+        <p>
+            It looks like you haven't discovered your next favourite piece yet.
+        </p>
+
+        <a href="{% url 'shop' %}" class="continue-shopping-button">
+            EXPLORE THE COLLECTION
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

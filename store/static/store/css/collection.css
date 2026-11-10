@@ -1,0 +1,416 @@
+
+/* =========================================
+   ATELIER — COLLECTION PAGES
+========================================= */
+
+.collection-page {
+    background: #f8f6f1;
+    color: #292a25;
+    min-height: 100vh;
+}
+
+/* COLLECTION HERO */
+
+.collection-hero {
+    min-height: 390px;
+    padding: 95px 8%;
+    background: #eae7de;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.collection-hero-content {
+    max-width: 650px;
+    position: relative;
+    z-index: 2;
+}
+
+.collection-eyebrow,
+.collection-section-label,
+.collection-empty-eyebrow {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: #85816f;
+    margin-bottom: 20px;
+}
+
+.collection-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 7vw, 82px);
+    font-weight: 400;
+    line-height: 1.05;
+    margin: 0 0 22px;
+}
+
+.collection-hero-content > p {
+    max-width: 470px;
+    color: #777467;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.collection-product-count {
+    display: inline-block;
+    margin-top: 22px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #686b54;
+    border-bottom: 1px solid #a6a38f;
+    padding-bottom: 8px;
+}
+
+.collection-hero-decoration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    transform: rotate(90deg);
+    margin-right: 5%;
+    color: #c4c0b2;
+    white-space: nowrap;
+}
+
+    .collection-hero-decoration span:first-child {
+        font-family: 'Playfair Display', serif;
+        font-size: 55px;
+        letter-spacing: 9px;
+    }
+
+    .collection-hero-decoration span:last-child {
+        font-size: 9px;
+        letter-spacing: 4px;
+    }
+
+/* COLLECTION CONTENT */
+
+.collection-content {
+    max-width: 1450px;
+    margin: 0 auto;
+    padding: 85px 7% 100px;
+}
+
+.collection-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 45px;
+    gap: 25px;
+}
+
+    .collection-toolbar h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(30px, 4vw, 43px);
+        font-weight: 400;
+        margin: 0;
+    }
+
+.collection-back-link {
+    color: #626d4d;
+    font-size: 12px;
+    text-decoration: none;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #a7aa96;
+    transition: color 0.3s ease;
+}
+
+    .collection-back-link:hover {
+        color: #292a25;
+    }
+
+/* PRODUCT GRID */
+
+.collection-product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 48px 25px;
+}
+
+.collection-product-card {
+    min-width: 0;
+}
+
+.collection-product-image {
+    display: block;
+    position: relative;
+    height: 410px;
+    overflow: hidden;
+    background: #e9e6de;
+    text-decoration: none;
+}
+
+    .collection-product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.7s cubic-bezier(.2,.7,.2,1);
+    }
+
+.collection-product-card:hover .collection-product-image img {
+    transform: scale(1.055);
+}
+
+.collection-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    color: #969382;
+}
+
+    .collection-image-placeholder span {
+        font-family: 'Playfair Display', serif;
+        font-size: 32px;
+        letter-spacing: 5px;
+    }
+
+    .collection-image-placeholder small {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+.collection-product-badge {
+    position: absolute;
+    top: 17px;
+    left: 17px;
+    background: #f8f6f1;
+    color: #626d4d;
+    padding: 8px 12px;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+}
+
+.collection-view-product {
+    position: absolute;
+    bottom: 18px;
+    right: 18px;
+    background: #f8f6f1;
+    color: #292a25;
+    padding: 12px 16px;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s ease;
+}
+
+.collection-product-card:hover .collection-view-product {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* PRODUCT DETAILS */
+
+.collection-product-info {
+    padding-top: 19px;
+}
+
+.collection-product-category {
+    display: block;
+    color: #96917f;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 9px;
+}
+
+.collection-product-info h3 {
+    margin: 0 0 9px;
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 400;
+}
+
+    .collection-product-info h3 a {
+        color: #292a25;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+        .collection-product-info h3 a:hover {
+            color: #777f5d;
+        }
+
+.collection-product-price {
+    font-size: 12px;
+    color: #777467;
+    margin: 0;
+}
+
+/* EMPTY COLLECTION */
+
+.collection-empty {
+    text-align: center;
+    padding: 100px 20px;
+    background: #eeece5;
+}
+
+    .collection-empty h2 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 400;
+        font-size: clamp(30px, 4vw, 43px);
+        margin: 0 0 17px;
+    }
+
+    .collection-empty p {
+        max-width: 470px;
+        margin: 0 auto 30px;
+        color: #777467;
+        font-size: 13px;
+        line-height: 1.9;
+    }
+
+.collection-empty-button {
+    display: inline-block;
+    background: #626d4d;
+    color: #fff;
+    padding: 15px 24px;
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    transition: background 0.3s ease;
+}
+
+    .collection-empty-button:hover {
+        background: #414a33;
+    }
+
+/* CLOSING SECTION */
+
+.collection-closing {
+    text-align: center;
+    padding: 65px 20px 75px;
+    background: #eae7de;
+}
+
+    .collection-closing > span {
+        font-size: 9px;
+        letter-spacing: 3px;
+        color: #85816f;
+    }
+
+    .collection-closing p {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(23px, 3vw, 34px);
+        margin: 20px 0;
+        font-weight: 400;
+    }
+
+    .collection-closing a {
+        display: inline-block;
+        color: #626d4d;
+        font-size: 11px;
+        text-decoration: none;
+        border-bottom: 1px solid #a7aa96;
+        padding-bottom: 7px;
+    }
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .collection-product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .collection-product-image {
+        height: 370px;
+    }
+
+    .collection-hero-decoration {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .collection-hero {
+        min-height: 330px;
+        padding: 75px 7%;
+    }
+
+    .collection-hero-decoration {
+        display: none;
+    }
+
+    .collection-content {
+        padding: 60px 5% 75px;
+    }
+
+    .collection-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 32px;
+    }
+
+    .collection-product-grid {
+        gap: 35px 13px;
+    }
+
+    .collection-product-image {
+        height: 250px;
+    }
+
+    .collection-product-info h3 {
+        font-size: 16px;
+    }
+
+    .collection-view-product {
+        display: none;
+    }
+
+    .collection-closing {
+        padding: 55px 20px;
+    }
+}
+
+@media (max-width: 380px) {
+    .collection-product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .collection-product-image {
+        height: 360px;
+    }
+}
+
+/* =========================================
+   COLLECTION PAGE ANIMATIONS
+========================================= */
+
+.collection-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.2, .7, .2, 1);
+}
+
+    .collection-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+.collection-product-image img {
+    transition: transform 0.8s cubic-bezier(.2, .7, .2, 1);
+}
+
+.collection-product-image.is-hovered img {
+    transform: scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .collection-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .collection-product-image img {
+        transition: none;
+    }
+}

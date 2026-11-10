@@ -1,0 +1,137 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} | ATELIER{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/product_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="product-detail-page">
+
+    <div class="product-breadcrumb">
+        <a href="{% url 'home' %}">Home</a>
+        <span>/</span>
+        <a href="{% url 'shop' %}">Shop</a>
+        <span>/</span>
+        <span>{{ product.name }}</span>
+    </div>
+    <div class="product-detail-layout">
+
+        <div class="product-gallery">
+
+            <div class="product-main-image">
+                {% if product.image %}
+                <img id="mainProductImage"
+                     src="{{ product.image.url }}"
+                     alt="{{ product.name }}">
+                {% elif product.gallery.all %}
+                <img id="mainProductImage"
+                     src="{{ product.gallery.all.0.image.url }}"
+                     alt="{{ product.name }}">
+                {% endif %}
+            </div>
+
+            <div class="product-thumbnail-list">
+
+                {% if product.image %}
+                <img class="product-thumbnail active"
+                     src="{{ product.image.url }}"
+                     alt="{{ product.name }}">
+                {% endif %}
+
+                {% for gallery_image in product.gallery.all %}
+                <img class="product-thumbnail"
+                     src="{{ gallery_image.image.url }}"
+                     alt="{{ gallery_image.alt_text|default:product.name }}">
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <div class="product-detail-info">
+
+            <span class="detail-category">
+                {{ product.category.name }}
+            </span>
+
+            <h1>{{ product.name }}</h1>
+
+            <p class="detail-price">
+                KSh {{ product.price|floatformat:2 }}
+            </p>
+
+            <div class="detail-divider"></div>
+
+            <div class="detail-description">
+                <h3>Product Description</h3>
+                <p>{{ product.description }}</p>
+            </div>
+
+            <div class="detail-stock">
+                {% if product.stock_quantity > 0 %}
+                <span class="stock-available">In Stock</span>
+                {% else %}
+                <span class="stock-unavailable">Out of Stock</span>
+                {% endif %}
+            </div>
+
+            <form method="POST" action="{% url 'add_to_cart' product.id %}" class="add-to-cart-form">
+
+                {% csrf_token %}
+
+                <div class="product-option">
+                    <label for="size">Select Size</label>
+
+                    <select name="size" id="size" required>
+                        <option value="">Choose a size</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                </div>
+
+                <div class="product-option">
+                    <label for="quantity">Quantity</label>
+
+                    <input type="number"
+                           name="quantity"
+                           id="quantity"
+                           value="1"
+                           min="1"
+                           max="{{ product.stock_quantity }}"
+                           required>
+                </div>
+
+                <button class="add-to-cart-button"
+                        type="submit"
+                        {% if product.stock_quantity < 1 %}disabled{% endif %}
+    >
+        {% if product.stock_quantity > 0 %}
+            ADD TO BAG
+        {% else %}
+            OUT OF STOCK
+        {% endif %}
+    </button>
+
+            </form>
+
+            <p class="detail-note">
+                Carefully selected. Made to be worn and loved.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% block extra_js %}
+<script src="{% static 'store/js/product_detail.js' %}"></script>
+{% endblock %}
+{% endblock %}

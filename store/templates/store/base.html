@@ -1,0 +1,247 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}ATELIER — Fashion Without Boundaries{% endblock %}</title>
+
+    <meta name="description" content="{% block meta_description %}Discover contemporary fashion, curated collections and individual style at ATELIER.{% endblock %}">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="{% static 'store/css/base.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- ANNOUNCEMENT BAR -->
+    <div class="announcement-bar">
+        <div class="announcement-content">
+            <span>NEW SEASON. NEW PERSPECTIVE.</span>
+            <span>DISCOVER THE LATEST COLLECTION</span>
+            <span>COMPLIMENTARY SHIPPING ON SELECT ORDERS</span>
+        </div>
+    </div>
+
+    <!-- MAIN NAVIGATION -->
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <!-- BRAND -->
+            <a href="{% url 'home' %}" class="brand-logo" aria-label="ATELIER home">
+                ATELIER<span>.</span>
+            </a>
+
+            <!-- DESKTOP NAVIGATION -->
+            <nav class="desktop-navigation" aria-label="Main navigation">
+
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'shop' %}">Shop</a>
+                <a href="{% url 'home' %}#new-arrivals">New Arrivals</a>
+                <a href="{% url 'home' %}#collections">Collections</a>
+                <a href="{% url 'home' %}#trending">Trending</a>
+                <a href="{% url 'home' %}#about">Our Story</a>
+
+            </nav>
+
+            <!-- HEADER ACTIONS -->
+            <div class="header-actions">
+
+                <!-- SEARCH -->
+                <button class="header-icon search-toggle"
+                        type="button"
+                        aria-label="Open search">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                        <path d="m16 16 5 5"></path>
+                    </svg>
+
+                </button>
+
+                <!-- CUSTOMER ACCOUNT -->
+                <a href="{% if user.is_authenticated %}{% url 'accounts:profile' %}{% else %}{% url 'accounts:login' %}{% endif %}"
+                   class="header-icon account-link"
+                   aria-label="My account">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"></path>
+                    </svg>
+
+                </a>
+                
+
+                <!-- SHOPPING BAG -->
+                <a href="{% url 'cart' %}"
+                   class="header-icon cart-link"
+                   aria-label="Shopping bag">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 8h14l1 13H4L5 8Z"></path>
+                        <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+                    </svg>
+
+                    <span class="cart-count">
+                        {{ cart_item_count|default:0 }}
+                    </span>
+
+                </a>
+
+                <!-- MOBILE MENU -->
+                <button class="mobile-menu-toggle"
+                        type="button"
+                        aria-label="Open menu"
+                        aria-expanded="false">
+
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- MOBILE NAVIGATION -->
+        <nav class="mobile-navigation" aria-label="Mobile navigation">
+
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'shop' %}">Shop All</a>
+            <a href="{% url 'home' %}#new-arrivals">New Arrivals</a>
+            <a href="{% url 'home' %}#collections">Collections</a>
+            <a href="{% url 'home' %}#trending">Trending</a>
+            <a href="{% url 'home' %}#about">Our Story</a>
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'accounts:logout' %}">Log Out</a>
+            {% else %}
+            <a href="{% url 'accounts:login' %}">Sign In</a>
+            <a href="{% url 'accounts:register' %}">Create Account</a>
+            {% endif %}
+
+        </nav>
+
+    </header>
+
+    <!-- SEARCH PANEL -->
+    <div class="search-panel" aria-hidden="true">
+
+        <form action="{% url 'shop' %}" method="get" class="search-form">
+
+            <input type="search"
+                   name="q"
+                   placeholder="What are you looking for?"
+                   aria-label="Search products">
+
+            <button type="submit" aria-label="Submit search">
+                Search
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- DJANGO NOTIFICATIONS -->
+    {% if messages %}
+
+    <div class="message-container">
+
+        {% for message in messages %}
+
+        <div class="site-message {{ message.tags }}">
+            {{ message }}
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% endif %}
+
+    <!-- PAGE CONTENT -->
+    <main id="main-content">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+
+                <a href="{% url 'home' %}" class="footer-logo">
+                    ATELIER<span>.</span>
+                </a>
+
+                <p>
+                    Fashion is more than what you wear.
+                    It's how you show up.
+                </p>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Explore</h3>
+
+                <a href="{% url 'shop' %}">Shop All</a>
+                <a href="{% url 'home' %}#new-arrivals">New Arrivals</a>
+                <a href="{% url 'home' %}#collections">Collections</a>
+                <a href="{% url 'home' %}#trending">Trending</a>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Customer Care</h3>
+
+                <a href="{% url 'cart' %}">Shopping Bag</a>
+                <a href="{% url 'checkout' %}">Checkout</a>
+                <a href="mailto:support@atelier.com">Contact Us</a>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h3>Your Account</h3>
+
+                {% if user.is_authenticated %}
+                <a href="{% url 'accounts:logout' %}">Log Out</a>
+                {% else %}
+                <a href="{% url 'accounts:login' %}">Sign In</a>
+                <a href="{% url 'accounts:register' %}">Create Account</a>
+                {% endif %}
+
+                <a href="{% url 'home' %}#about">About ATELIER</a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <span>© {% now "Y" %} ATELIER. ALL RIGHTS RESERVED.</span>
+            <span>MADE FOR INDIVIDUALITY.</span>
+
+        </div>
+
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script src="{% static 'store/js/main.js' %}" defer></script>
+
+    {% block extra_js %}{% endblock %}
+
+</body>
+</html>

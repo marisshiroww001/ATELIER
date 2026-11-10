@@ -1,0 +1,143 @@
+
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}Shop | ATELIER{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/shop.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="shop-page">
+
+    <div class="shop-heading">
+        <div>
+            <span class="shop-eyebrow">THE ATELIER COLLECTION</span>
+            <h1>Shop All</h1>
+            <p>Explore our latest selection of considered essentials.</p>
+        </div>
+
+        <span class="product-count">
+            {{ products.count }} Products
+        </span>
+    </div>
+
+    <div class="shop-layout">
+
+        <aside class="shop-sidebar">
+            <h3>Categories</h3>
+
+            <a href="{% url 'shop' %}" class="category-link">
+                All Products
+            </a>
+
+            {% for category in categories %}
+            <a href="{% url 'shop' %}?category={{ category.slug }}"
+               class="category-link">
+                {{ category.name }}
+            </a>
+            {% endfor %}
+        </aside>
+
+        <div class="shop-products">
+
+            {% if search_query %}
+            <div class="search-results-heading">
+                <p>
+                    Search results for:
+                    <strong>"{{ search_query }}"</strong>
+                </p>
+                <a href="{% url 'shop' %}">Clear search</a>
+            </div>
+            {% endif %}
+
+            {% if products %}
+
+            <div class="shop-product-grid">
+
+                {% for product in products %}
+
+                <article class="shop-product-card">
+
+                    <a href="{% url 'product_detail' product.slug %}"
+                       class="shop-product-image">
+
+                        {% if product.image %}
+                        <img src="{{ product.image.url }}"
+                             alt="{{ product.name }}"
+                             loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                             decoding="async"
+                             {% if forloop.first %}fetchpriority="high" {% endif %}
+                             width="600"
+                             height="750">
+                        {% else %}
+                        <div class="product-image-placeholder">
+                            Image coming soon
+                        </div>
+                        {% endif %}
+
+                        {% if product.is_new_arrival %}
+                        <span class="product-badge">NEW</span>
+                        {% endif %}
+
+                    </a>
+
+                    <div class="shop-product-info">
+
+                        <span class="product-category">
+                            {{ product.category.name }}
+                        </span>
+
+                        <h3>
+                            <a href="{% url 'product_detail' product.slug %}">
+                                {{ product.name }}
+                            </a>
+                        </h3>
+
+                        <p class="product-price">
+                            KSh {{ product.price|floatformat:2 }}
+                        </p>
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <div class="empty-shop">
+
+                {% if search_query %}
+                <h2>No products found.</h2>
+                <p>
+                    We couldn't find anything matching
+                    "{{ search_query }}".
+                    Try another search.
+                </p>
+                <a href="{% url 'shop' %}" class="shop-empty-link">
+                    Browse all products
+                </a>
+                {% else %}
+                <h2>Our collection is coming soon.</h2>
+                <p>
+                    We're preparing something special.
+                    Check back shortly.
+                </p>
+                {% endif %}
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

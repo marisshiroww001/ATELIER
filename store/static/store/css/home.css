@@ -1,0 +1,692 @@
+
+/* =====================================================
+   ATELIER — MODERN FASHION STORE
+   Clean • Balanced • Elegant • Responsive
+===================================================== */
+
+/* 01 — HOME PAGE SETTINGS
+----------------------------------------------------- */
+
+:root {
+    --home-purple: #7548e8;
+    --home-orange: #ff7043;
+    --home-lime: #d8f36a;
+    --home-black: #111111;
+    --home-grey: #777777;
+    --home-light: #f6f6f6;
+    --home-border: #e9e9e9;
+}
+
+.home-page {
+    overflow: hidden;
+}
+
+    .home-page img {
+        display: block;
+        width: 100%;
+        object-fit: cover;
+    }
+
+/* 02 — HERO SECTION
+----------------------------------------------------- */
+
+.hero {
+    width: min(100% - 48px, 1380px);
+    min-height: 520px;
+    margin: 32px auto 55px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 45px;
+    position: relative;
+}
+
+.hero-content {
+    padding: 35px 20px 35px 45px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--home-purple);
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+    color: var(--home-black);
+    margin: 0 0 20px;
+}
+
+.hero-description {
+    max-width: 420px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--home-grey);
+    margin-bottom: 28px;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 24px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.hero-button-primary {
+    background: var(--home-black);
+    color: var(--white);
+}
+
+    .hero-button-primary:hover {
+        background: var(--home-purple);
+        transform: translateY(-3px);
+    }
+
+.hero-button-secondary {
+    color: var(--home-black);
+    border: 1px solid var(--home-border);
+}
+
+    .hero-button-secondary:hover {
+        border-color: var(--home-purple);
+        color: var(--home-purple);
+    }
+
+.hero-image-wrapper {
+    width: 100%;
+    height: 480px;
+    position: relative;
+    overflow: hidden;
+    background: var(--home-light);
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.hero-image-wrapper:hover .hero-image {
+    transform: scale(1.035);
+}
+
+/* Keep decorative elements understated */
+
+.hero-background-text,
+.hero-floating-number,
+.hero-side-note,
+.hero-index {
+    display: none;
+}
+
+.hero-image-label {
+    position: absolute;
+    left: 18px;
+    bottom: 18px;
+    background: var(--white);
+    padding: 10px 15px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* 03 — EDITORIAL MARQUEE
+----------------------------------------------------- */
+
+.editorial-marquee {
+    width: 100%;
+    overflow: hidden;
+    padding: 17px 0;
+    background: var(--home-black);
+    color: var(--white);
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: atelier-marquee 35s linear infinite;
+}
+
+    .marquee-track span {
+        flex-shrink: 0;
+        padding: 0 30px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+@keyframes atelier-marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* 04 — GENERAL SECTION HEADINGS
+----------------------------------------------------- */
+
+.home-section {
+    width: min(100% - 48px, 1380px);
+    margin: 85px auto;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.section-eyebrow {
+    display: block;
+    color: var(--home-purple);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 9px;
+}
+
+.section-heading h2 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.7px;
+    color: var(--home-black);
+    margin: 0;
+}
+
+.section-link {
+    color: var(--home-black);
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    border-bottom: 1px solid var(--home-black);
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+    .section-link:hover {
+        color: var(--home-purple);
+        border-color: var(--home-purple);
+    }
+
+/* 05 — COLLECTIONS
+----------------------------------------------------- */
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.collection-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--home-light);
+}
+
+.collection-large,
+.collection-small {
+    grid-column: auto;
+    grid-row: auto;
+    margin: 0;
+}
+
+.collection-image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.collection-card:hover .collection-image {
+    transform: scale(1.045);
+}
+
+.collection-info {
+    padding: 17px 18px;
+    background: var(--white);
+}
+
+    .collection-info h3 {
+        font-family: var(--font-display);
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--home-black);
+        margin: 0 0 6px;
+    }
+
+    .collection-info p {
+        font-size: 12px;
+        color: var(--home-grey);
+        margin: 0;
+    }
+
+.collection-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: var(--home-purple);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+/* 06 — NEW ARRIVALS
+----------------------------------------------------- */
+
+.arrivals-section {
+    padding: 65px 0;
+    background: #fafafa;
+}
+
+    .arrivals-section .home-section {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+.arrival-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.arrival-card {
+    min-width: 0;
+    background: var(--white);
+}
+
+.arrival-image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    position: relative;
+    overflow: hidden;
+    background: var(--home-light);
+}
+
+    .arrival-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.65s ease;
+    }
+
+.arrival-card:hover .arrival-image img {
+    transform: scale(1.05);
+}
+
+.arrival-details {
+    padding: 16px 15px 18px;
+}
+
+    .arrival-details h3 {
+        font-family: var(--font-display);
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0 0 6px;
+        color: var(--home-black);
+    }
+
+    .arrival-details p {
+        font-size: 12px;
+        line-height: 1.6;
+        color: var(--home-grey);
+        margin: 0;
+    }
+
+/* 07 — BRAND STATEMENT
+----------------------------------------------------- */
+
+.brand-statement {
+    width: min(100% - 48px, 1000px);
+    margin: 100px auto;
+    padding: 55px 35px;
+    text-align: center;
+    background: #f4f1fc;
+    position: relative;
+}
+
+.statement-decoration,
+.statement-symbol {
+    display: none;
+}
+
+.brand-statement .section-eyebrow {
+    margin-bottom: 15px;
+}
+
+.brand-statement h2 {
+    max-width: 750px;
+    margin: 0 auto 18px;
+    font-family: var(--font-display);
+    font-size: clamp(27px, 3.5vw, 38px);
+    line-height: 1.25;
+    letter-spacing: -0.8px;
+    color: var(--home-black);
+}
+
+.brand-statement p {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--home-grey);
+}
+
+/* 08 — FINAL CAMPAIGN
+----------------------------------------------------- */
+
+.final-campaign {
+    width: min(100% - 48px, 1380px);
+    min-height: 350px;
+    margin: 85px auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    background: var(--home-black);
+}
+
+    .final-campaign > img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .final-campaign::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.42);
+    }
+
+.final-campaign-content {
+    position: relative;
+    z-index: 1;
+    max-width: 650px;
+    padding: 45px 25px;
+    color: var(--white);
+}
+
+    .final-campaign-content .section-eyebrow {
+        color: var(--home-lime);
+    }
+
+    .final-campaign-content h2 {
+        font-family: var(--font-display);
+        font-size: clamp(30px, 4vw, 43px);
+        line-height: 1.2;
+        letter-spacing: -1px;
+        margin: 0 0 16px;
+    }
+
+    .final-campaign-content p {
+        font-size: 13px;
+        line-height: 1.7;
+        margin: 0 auto 22px;
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+/* 09 — SIMPLE ENTRANCE ANIMATIONS
+----------------------------------------------------- */
+
+@keyframes atelier-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content {
+    animation: atelier-fade-up 0.7s ease both;
+}
+
+.hero-image-wrapper {
+    animation: atelier-fade-up 0.9s ease both;
+}
+
+/* 10 — TABLET
+----------------------------------------------------- */
+
+@media (max-width: 1000px) {
+
+    .hero {
+        gap: 25px;
+        min-height: 430px;
+    }
+
+    .hero-content {
+        padding-left: 15px;
+    }
+
+    .hero-image-wrapper {
+        height: 420px;
+    }
+
+    .collection-grid,
+    .arrival-grid {
+        gap: 16px;
+    }
+
+    .home-section {
+        margin-top: 70px;
+        margin-bottom: 70px;
+    }
+}
+
+/* 11 — MOBILE
+----------------------------------------------------- */
+
+@media (max-width: 760px) {
+
+    .hero {
+        width: min(100% - 32px, 600px);
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+
+    .hero-content {
+        padding: 25px 5px 0;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .hero-image-wrapper {
+        height: 430px;
+    }
+
+    .home-section {
+        width: calc(100% - 32px);
+        margin: 60px auto;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+        .section-heading h2 {
+            font-size: 28px;
+        }
+
+    .collection-grid,
+    .arrival-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .collection-info {
+        padding: 13px;
+    }
+
+        .collection-info h3,
+        .arrival-details h3 {
+            font-size: 14px;
+        }
+
+    .arrival-details {
+        padding: 13px;
+    }
+
+    .brand-statement {
+        width: calc(100% - 32px);
+        margin: 65px auto;
+        padding: 40px 22px;
+    }
+
+    .final-campaign {
+        width: calc(100% - 32px);
+        min-height: 320px;
+        margin: 60px auto;
+    }
+}
+
+/* 12 — SMALL PHONES
+----------------------------------------------------- */
+
+@media (max-width: 480px) {
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero-image-wrapper {
+        height: 350px;
+    }
+
+    .hero-button {
+        padding: 0 17px;
+        font-size: 10px;
+    }
+
+    .collection-grid,
+    .arrival-grid {
+        gap: 10px;
+    }
+
+    .collection-image,
+    .arrival-image {
+        aspect-ratio: 3 / 4;
+    }
+
+    .collection-info h3,
+    .arrival-details h3 {
+        font-size: 13px;
+    }
+
+    .collection-info p,
+    .arrival-details p {
+        font-size: 11px;
+    }
+
+    .brand-statement h2 {
+        font-size: 27px;
+    }
+
+    .final-campaign-content h2 {
+        font-size: 30px;
+    }
+}
+
+/* 13 — ACCESSIBILITY
+----------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* HOMEPAGE JAVASCRIPT REVEAL EFFECTS */
+
+.reveal-element {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+    .reveal-element.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+.hero-image.image-loaded {
+    animation: hero-image-appear 0.8s ease both;
+}
+
+@keyframes hero-image-appear {
+    from {
+        opacity: 0.75;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-element {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

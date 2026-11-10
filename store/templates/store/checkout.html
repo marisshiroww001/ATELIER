@@ -1,0 +1,191 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}Checkout | ATELIER{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="checkout-page">
+
+    <div class="checkout-heading">
+        <span>ALMOST YOURS</span>
+        <h1>Checkout</h1>
+        <p>Complete your delivery details to place your order.</p>
+    </div>
+
+    <form method="POST" class="checkout-form">
+
+        {% csrf_token %}
+
+        <div class="checkout-layout">
+
+            <div class="checkout-details">
+
+                <div class="checkout-section">
+
+                    <h2>01. Contact Information</h2>
+
+                    <div class="checkout-field">
+                        <label for="full_name">Full Name</label>
+                        <input type="text"
+                               id="full_name"
+                               name="full_name"
+                               value="{{ request.user.get_full_name }}"
+                               placeholder="Enter your full name"
+                               required>
+                    </div>
+
+                    <div class="checkout-field">
+                        <label for="email">Email Address</label>
+                        <input type="email"
+                               id="email"
+                               name="email"
+                               value="{{ request.user.email }}"
+                               placeholder="Enter your email"
+                               required>
+                    </div>
+
+                    <div class="checkout-field">
+                        <label for="phone_number">Phone Number</label>
+                        <input type="tel"
+                               id="phone_number"
+                               name="phone_number"
+                               placeholder="e.g. 0712345678"
+                               required>
+                    </div>
+
+                </div>
+
+                <div class="checkout-section">
+
+                    <h2>02. Delivery Information</h2>
+
+                    <div class="checkout-field">
+                        <label for="address">Street Address</label>
+                        <input type="text"
+                               id="address"
+                               name="address"
+                               placeholder="House number, building or street"
+                               required>
+                    </div>
+
+                    <div class="checkout-field">
+                        <label for="city">Town / Area</label>
+                        <input type="text"
+                               id="city"
+                               name="city"
+                               placeholder="Enter your town or area"
+                               required>
+                    </div>
+
+                    <div class="checkout-field">
+                        <label for="county">County</label>
+                        <input type="text"
+                               id="county"
+                               name="county"
+                               placeholder="Enter your county"
+                               required>
+                    </div>
+
+                    <div class="checkout-field">
+                        <label for="delivery_zone">Delivery Zone</label>
+
+                        <select id="delivery_zone"
+                                name="delivery_zone"
+                                required>
+                            <option value="">Select your delivery area</option>
+
+                            {% for zone in delivery_zones %}
+                            <option value="{{ zone.id }}" data-fee="{{ zone.delivery_fee }}">
+                                {{ zone.name }}, {{ zone.county }}
+                                — KSh {{ zone.delivery_fee|floatformat:2 }}
+                            </option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                    <div class="checkout-field">
+                        <label for="delivery_notes">
+                            Additional Delivery Instructions
+                            <span>(Optional)</span>
+                        </label>
+
+                        <textarea id="delivery_notes"
+                                  name="delivery_notes"
+                                  rows="4"
+                                  placeholder="Any directions or delivery preferences?"></textarea>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <aside class="checkout-summary">
+
+                <h2>Your Order</h2>
+
+                {% for item in cart_items %}
+
+                <div class="checkout-product">
+
+                    <div class="checkout-product-info">
+                        <h3>{{ item.product.name }}</h3>
+                        <p>Size: {{ item.size }}</p>
+                        <p>Quantity: {{ item.quantity }}</p>
+                    </div>
+
+                    <strong>
+                        KSh {{ item.subtotal|floatformat:2 }}
+                    </strong>
+
+                </div>
+
+                {% endfor %}
+
+                <div class="checkout-summary-row">
+                    <span>Subtotal</span>
+                    <strong>KSh {{ cart_total|floatformat:2 }}</strong>
+                </div>
+
+                <div class="checkout-summary-row">
+                    <span>Delivery</span>
+                    <strong id="delivery-fee">KSh 0.00</strong>
+                </div>
+
+                <div class="checkout-summary-divider"></div>
+
+                <div class="checkout-summary-total">
+                    <span>Order Total</span>
+                    <strong id="order-total"
+                            data-subtotal="{{ cart_total }}">
+                        KSh {{ cart_total|floatformat:2 }}
+                    </strong>
+                </div>
+
+                <button type="submit" class="place-order-button">
+                    CONTINUE TO PAYMENT
+                </button>
+
+                <a href="{% url 'cart' %}" class="back-to-bag">
+                    Return to Shopping Bag
+                </a>
+
+            </aside>
+
+        </div>
+
+    </form>
+
+</section>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'store/js/checkout.js' %}" defer></script>
+{% endblock %}

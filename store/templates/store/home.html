@@ -1,0 +1,358 @@
+
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}ATELIER — Discover Your Style{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="home-page">
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="hero-eyebrow">THE NEW SEASON COLLECTION</span>
+
+            <h1>
+                Don't just<br>
+                wear it.<br>
+                Own it.
+            </h1>
+
+            <p class="hero-description">
+                Discover fashion that speaks before you do.
+                Explore thoughtfully selected pieces designed
+                to make every outfit feel like you.
+            </p>
+
+            <div class="hero-actions">
+
+                <a href="{% url 'collection_detail' 'new-arrivals' %}"
+                   class="hero-button hero-button-primary">
+                    Shop New Arrivals
+                </a>
+
+                <a href="{% url 'collection_detail' 'ready-to-wear' %}"
+                   class="hero-button hero-button-secondary">
+                    Explore Collections
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="hero-image-wrapper">
+
+            <img src="{% static 'store/images/hero-model.jpg' %}"
+                 alt="ATELIER fashion collection"
+                 class="hero-image"
+                 fetchpriority="high"
+                 decoding="async">
+
+            <div class="hero-image-label">
+                ATELIER — NEW SEASON
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EDITORIAL MARQUEE -->
+    <section class="editorial-marquee" aria-label="Our fashion philosophy">
+
+        <div class="marquee-track">
+
+            {% for item in "123456" %}
+            <span>STYLE IS PERSONAL ✦ FASHION IS EXPRESSION ✦</span>
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- COLLECTIONS -->
+    <section class="home-section" id="collections">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-eyebrow">EXPLORE ATELIER</span>
+                <h2>Shop Our Collections</h2>
+            </div>
+
+            <a href="{% url 'shop' %}" class="section-link">
+                Discover More →
+            </a>
+
+        </div>
+
+        <div class="collection-grid">
+
+            <!-- READY TO WEAR -->
+            <article class="collection-card">
+
+                <a href="{% url 'collection_detail' 'ready-to-wear' %}">
+                    <img src="{% static 'store/images/ready-to-wear.jpg' %}"
+                         alt="Ready to wear fashion"
+                         class="collection-image"
+                         loading="lazy"
+                         decoding="async">
+                </a>
+
+                <div class="collection-info">
+
+                    <h3>Ready to Wear</h3>
+
+                    <p>Everyday pieces, elevated.</p>
+
+                    <a href="{% url 'collection_detail' 'ready-to-wear' %}"
+                       class="collection-link">
+                        Explore Collection →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- ACCESSORIES -->
+            <article class="collection-card">
+
+                <a href="{% url 'collection_detail' 'accessories' %}">
+                    <img src="{% static 'store/images/accessories.jpg' %}"
+                         alt="Fashion accessories"
+                         class="collection-image"
+                         loading="lazy"
+                         decoding="async">
+                </a>
+
+                <div class="collection-info">
+
+                    <h3>Accessories</h3>
+
+                    <p>The details make the difference.</p>
+
+                    <a href="{% url 'collection_detail' 'accessories' %}"
+                       class="collection-link">
+                        Explore Collection →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- NEW SEASON -->
+            <article class="collection-card">
+
+                <a href="{% url 'collection_detail' 'new-season' %}">
+                    <img src="{% static 'store/images/new-season.jpg' %}"
+                         alt="New season fashion"
+                         class="collection-image"
+                         loading="lazy"
+                         decoding="async">
+                </a>
+
+                <div class="collection-info">
+
+                    <h3>New Season</h3>
+
+                    <p>Fresh styles. New possibilities.</p>
+
+                    <a href="{% url 'collection_detail' 'new-season' %}"
+                       class="collection-link">
+                        Explore Collection →
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- NEW ARRIVALS -->
+    <section class="arrivals-section" id="new-arrivals">
+
+        <div class="home-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-eyebrow">JUST LANDED</span>
+                    <h2>New Arrivals</h2>
+                </div>
+
+                <a href="{% url 'collection_detail' 'new-arrivals' %}"
+                   class="section-link">
+                    View All →
+                </a>
+
+            </div>
+
+
+            <div class="arrival-grid">
+
+                <!-- MODERN FORM -->
+                <article class="arrival-card">
+
+                    <a href="{% url 'collection_detail' 'modern-form' %}"
+                       class="arrival-image">
+
+                        <img src="{% static 'store/images/campaign-01.jpg' %}"
+                             alt="Modern Form fashion collection"
+                             loading="lazy"
+                             decoding="async">
+
+                    </a>
+
+                    <div class="arrival-details">
+
+                        <h3>Modern Form</h3>
+
+                        <p>
+                            Contemporary essentials for every occasion.
+                        </p>
+
+                        <a href="{% url 'collection_detail' 'modern-form' %}"
+                           class="collection-link">
+                            Shop Collection →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- BEYOND BASIC -->
+                <article class="arrival-card">
+
+                    <a href="{% url 'collection_detail' 'beyond-basic' %}"
+                       class="arrival-image">
+
+                        <img src="{% static 'store/images/campaign-02.jpg' %}"
+                             alt="Beyond Basic fashion collection"
+                             loading="lazy"
+                             decoding="async">
+
+                    </a>
+
+                    <div class="arrival-details">
+
+                        <h3>Beyond Basic</h3>
+
+                        <p>
+                            Everyday fashion with a distinctive edge.
+                        </p>
+
+                        <a href="{% url 'collection_detail' 'beyond-basic' %}"
+                           class="collection-link">
+                            Shop Collection →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- UNSCRIPTED -->
+                <article class="arrival-card">
+
+                    <a href="{% url 'collection_detail' 'unscripted' %}"
+                       class="arrival-image">
+
+                        <img src="{% static 'store/images/campaign-03.jpg' %}"
+                             alt="Unscripted fashion collection"
+                             loading="lazy"
+                             decoding="async">
+
+                    </a>
+
+                    <div class="arrival-details">
+
+                        <h3>Unscripted</h3>
+
+                        <p>
+                            Pieces that let your personality shine.
+                        </p>
+
+                        <a href="{% url 'collection_detail' 'unscripted' %}"
+                           class="collection-link">
+                            Shop Collection →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BRAND STATEMENT -->
+    <section class="brand-statement" id="about">
+
+        <span class="section-eyebrow">THE ATELIER PHILOSOPHY</span>
+
+        <h2>
+            Fashion should feel like you.
+        </h2>
+
+        <p>
+            We believe personal style is more than following trends.
+            It is about discovering what makes you feel confident,
+            comfortable and completely yourself.
+        </p>
+
+    </section>
+
+
+    <!-- FINAL CAMPAIGN -->
+    <section class="final-campaign" id="trending">
+
+        <img src="{% static 'store/images/final-campaign.jpg' %}"
+             alt="ATELIER latest fashion campaign"
+             loading="lazy"
+             decoding="async">
+
+        <div class="final-campaign-content">
+
+            <span class="section-eyebrow">YOUR STYLE, YOUR STORY</span>
+
+            <h2>Make Every Outfit Count.</h2>
+
+            <p>
+                Find the pieces you'll reach for again and again.
+                Your next favourite look starts here.
+            </p>
+
+            <a href="{% url 'shop' %}"
+               class="hero-button hero-button-primary">
+                Explore ATELIER
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{% static 'store/js/home.js' %}" defer></script>
+{% endblock %}

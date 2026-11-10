@@ -1,0 +1,182 @@
+
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }} | ATELIER{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/collection.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="collection-page">
+
+    <!-- COLLECTION HERO -->
+
+    <header class="collection-hero">
+
+        <div class="collection-hero-content">
+
+            <span class="collection-eyebrow">
+                THE ATELIER COLLECTION
+            </span>
+
+            <h1>{{ page_title }}</h1>
+
+            <p>
+                {% if page_description %}
+                    {{ page_description }}
+                {% else %}
+                    Discover thoughtfully selected pieces designed
+                    to make every outfit feel like you.
+                {% endif %}
+            </p>
+
+            <span class="collection-product-count">
+                {{ products.count }} PIECES
+            </span>
+
+        </div>
+
+        <div class="collection-hero-decoration">
+            <span>ATELIER</span>
+            <span>STYLE IS PERSONAL</span>
+        </div>
+
+    </header>
+
+
+    <!-- COLLECTION PRODUCTS -->
+
+    <div class="collection-content">
+
+        <div class="collection-toolbar">
+
+            <div>
+                <span class="collection-section-label">
+                    DISCOVER THE EDIT
+                </span>
+
+                <h2>Selected for you.</h2>
+            </div>
+
+            <a href="{% url 'shop' %}" class="collection-back-link">
+                Shop All Products →
+            </a>
+
+        </div>
+
+
+        {% if products %}
+
+        <div class="collection-product-grid">
+
+            {% for product in products %}
+
+            <article class="collection-product-card">
+
+                <a href="{% url 'product_detail' product.slug %}"
+                   class="collection-product-image">
+
+                    {% if product.image %}
+
+                        <img src="{{ product.image.url }}"
+                             alt="{{ product.name }}"
+                             loading="lazy">
+
+                    {% else %}
+
+                        <div class="collection-image-placeholder">
+                            <span>ATELIER</span>
+                            <small>IMAGE COMING SOON</small>
+                        </div>
+
+                    {% endif %}
+
+                    {% if product.is_new_arrival %}
+                        <span class="collection-product-badge">
+                            NEW
+                        </span>
+                    {% endif %}
+
+                    <span class="collection-view-product">
+                        VIEW PRODUCT →
+                    </span>
+
+                </a>
+
+
+                <div class="collection-product-info">
+
+                    <span class="collection-product-category">
+                        {{ product.category.name }}
+                    </span>
+
+                    <h3>
+                        <a href="{% url 'product_detail' product.slug %}">
+                            {{ product.name }}
+                        </a>
+                    </h3>
+
+                    <p class="collection-product-price">
+                        KSh {{ product.price|floatformat:2 }}
+                    </p>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="collection-empty">
+
+            <span class="collection-empty-eyebrow">
+                SOMETHING BEAUTIFUL IS COMING
+            </span>
+
+            <h2>This collection is being curated.</h2>
+
+            <p>
+                We're preparing a selection of pieces for this edit.
+                In the meantime, explore the rest of ATELIER.
+            </p>
+
+            <a href="{% url 'shop' %}" class="collection-empty-button">
+                Explore All Products →
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- COLLECTION FOOTER -->
+
+    <section class="collection-closing">
+
+        <span>ATELIER — THOUGHTFULLY SELECTED</span>
+
+        <p>
+            Your style. Your story. Your own kind of beautiful.
+        </p>
+
+        <a href="{% url 'shop' %}">
+            Continue Exploring →
+        </a>
+
+    </section>
+
+</section>
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'store/js/collection.js' %}" defer></script>
+
+
+{% endblock %}

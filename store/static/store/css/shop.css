@@ -1,0 +1,237 @@
+
+/* =====================================================
+   ATELIER — SHOP PAGE
+===================================================== */
+
+.shop-page {
+    width: 90%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 55px 0 90px;
+}
+
+/* SHOP HEADING */
+
+.shop-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 35px;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.shop-eyebrow {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--purple);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.shop-heading h1 {
+    margin: 0 0 10px;
+    font-size: 34px;
+    font-weight: 600;
+}
+
+.shop-heading p {
+    margin: 0;
+    color: var(--grey);
+    font-size: 13px;
+}
+
+.product-count {
+    color: var(--grey);
+    font-size: 12px;
+}
+
+/* SHOP LAYOUT */
+
+.shop-layout {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 45px;
+    padding-top: 35px;
+}
+
+/* CATEGORY SIDEBAR */
+
+.shop-sidebar h3 {
+    margin: 0 0 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.category-link {
+    display: block;
+    padding: 10px 0;
+    color: var(--grey);
+    font-size: 12px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+    .category-link:hover,
+    .category-link.active {
+        color: var(--purple);
+    }
+
+/* PRODUCT GRID */
+
+.shop-product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 35px 22px;
+}
+
+.shop-product-card {
+    min-width: 0;
+}
+
+.shop-product-image {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    background: var(--light-grey);
+}
+
+    .shop-product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+    }
+
+.shop-product-card:hover .shop-product-image img {
+    transform: scale(1.04);
+}
+
+.product-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--grey);
+    font-size: 12px;
+}
+
+.product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 6px 10px;
+    background: var(--lime);
+    color: var(--black);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.shop-product-info {
+    padding-top: 13px;
+}
+
+.product-category {
+    color: var(--grey);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.shop-product-info h3 {
+    margin: 7px 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.product-price {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* EMPTY SHOP */
+
+.empty-shop {
+    padding: 90px 20px;
+    text-align: center;
+}
+
+    .empty-shop h2 {
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .empty-shop p {
+        color: var(--grey);
+        font-size: 13px;
+    }
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .shop-layout {
+        grid-template-columns: 150px 1fr;
+        gap: 25px;
+    }
+
+    .shop-product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .shop-page {
+        width: 92%;
+        padding-top: 35px;
+    }
+
+    .shop-heading {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+        .shop-heading h1 {
+            font-size: 28px;
+        }
+
+        .shop-heading p {
+            max-width: 240px;
+            line-height: 1.6;
+        }
+
+    .product-count {
+        white-space: nowrap;
+        padding-top: 28px;
+    }
+
+    .shop-layout {
+        display: block;
+        padding-top: 25px;
+    }
+
+    .shop-sidebar {
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--light-grey);
+    }
+
+        .shop-sidebar h3 {
+            margin-bottom: 10px;
+        }
+
+    .category-link {
+        display: inline-block;
+        margin-right: 15px;
+        padding: 7px 0;
+    }
+
+    .shop-product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 25px 12px;
+    }
+}

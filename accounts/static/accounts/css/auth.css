@@ -1,0 +1,201 @@
+/* =========================================
+   ATELIER — CUSTOMER AUTHENTICATION
+========================================= */
+
+.auth-page {
+    min-height: 75vh;
+    padding: 65px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 460px;
+}
+
+.auth-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+    .auth-heading span {
+        color: #a47b62;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 2px;
+    }
+
+    .auth-heading h1 {
+        margin: 12px 0;
+        color: #222;
+        font-size: 29px;
+        font-weight: 500;
+    }
+
+    .auth-heading p {
+        color: #888;
+        font-size: 13px;
+    }
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+    .form-group label {
+        color: #444;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .form-group input {
+        width: 100%;
+        height: 46px;
+        padding: 0 13px;
+        border: 1px solid #dedede;
+        outline: none;
+        font-family: inherit;
+        font-size: 13px;
+        box-sizing: border-box;
+    }
+
+        .form-group input:focus {
+            border-color: #a47b62;
+        }
+
+.form-error {
+    color: #b44343;
+    font-size: 11px;
+}
+
+.auth-submit {
+    width: 100%;
+    height: 48px;
+    margin-top: 10px;
+    border: none;
+    background: #222;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+
+    .auth-submit:hover {
+        background: #a47b62;
+    }
+
+.auth-footer {
+    margin-top: 25px;
+    text-align: center;
+}
+
+    .auth-footer p {
+        color: #888;
+        font-size: 12px;
+    }
+
+    .auth-footer a {
+        color: #222;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+@media (max-width: 600px) {
+    .auth-page {
+        padding: 45px 20px;
+    }
+
+    .auth-heading h1 {
+        font-size: 25px;
+    }
+}
+/* GOOGLE SIGN-IN */
+
+.social-login {
+    margin-top: 22px;
+}
+
+.social-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    color: #999;
+    font-size: 10px;
+}
+
+    .social-divider::before,
+    .social-divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #e5e5e5;
+    }
+
+.google-login-button {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: 1px solid #dedede;
+    border-radius: 10px;
+    background: #fff;
+    color: #333;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s ease;
+    box-sizing: border-box;
+}
+
+    .google-login-button:hover {
+        background: #f7f7f7;
+    }
+
+    .google-login-button img {
+        width: 17px;
+        height: 17px;
+    }
+/* =========================================
+   GOOGLE CONFIRMATION PAGE
+========================================= */
+
+.auth-page {
+    background: #fff;
+}
+
+.auth-container {
+    padding: 20px 0;
+}
+
+.auth-submit {
+    border-radius: 10px;
+}
+
+.auth-form button {
+    font-family: inherit;
+}
+
+.auth-footer a {
+    display: inline-block;
+    margin-top: 10px;
+    transition: color 0.2s ease;
+}
+
+    .auth-footer a:hover {
+        color: #a47b62;
+    }
