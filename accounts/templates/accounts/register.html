@@ -1,5 +1,6 @@
 {% extends 'store/base.html' %}
 {% load static %}
+{% load socialaccount %}
 
 {% block title %}Create Account | ATELIER{% endblock %}
 
@@ -24,7 +25,6 @@
             {% csrf_token %}
 
             {% for field in form %}
-
             <div class="form-group">
 
                 <label for="{{ field.id_for_label }}">
@@ -38,7 +38,6 @@
                 {% endfor %}
 
             </div>
-
             {% endfor %}
 
             {% if form.non_field_errors %}
@@ -53,10 +52,28 @@
 
         </form>
 
+        <div class="social-login">
+
+            <div class="social-divider">
+                <span>OR</span>
+            </div>
+
+            <a href="{% provider_login_url 'google' %}"
+               class="google-login-button">
+
+                <img src="https://www.google.com/favicon.ico"
+                     alt="Google">
+
+                Continue with Google
+
+            </a>
+
+        </div>
+
         <div class="auth-footer">
             <p>
                 Already have an account?
-                <a href="#">Sign in</a>
+                <a href="{% url 'accounts:login' %}">Sign in</a>
             </p>
         </div>
 
